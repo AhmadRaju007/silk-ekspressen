@@ -2,7 +2,10 @@ import "./modal.css";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import { Button } from "@mui/material";
 
-export const Modal = (props: { orderName: string }) => {
+export const Modal = (props: {
+  orderName: string;
+  onButtonSuccess: () => any;
+}) => {
   return (
     <div className="modal">
       <div className="modal-content">
@@ -22,6 +25,7 @@ export const Modal = (props: { orderName: string }) => {
               backgroundColor: "#c7efc0",
             }}
             size="large"
+            onClick={props.onButtonSuccess}
           >
             Yes
           </Button>
