@@ -1,3 +1,8 @@
+export interface OrderData {
+  data: Employee;
+  success: boolean;
+}
+
 export interface Employee {
   id: number;
   employee_id: number;
