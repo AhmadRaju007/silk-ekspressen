@@ -1,6 +1,6 @@
 /* need a fixed header and footer */
 
-.bag-view {
+.container {
   /* display: flex; */
   /* flex-direction: column; */
   justify-content: space-between;
@@ -8,18 +8,77 @@
 }
 
 /* header should be fixed on top when scrolling y */
-.bag-view-header {
+.header {
   top: 0;
+  width: 100%;
+  position: sticky;
+  background-color: #fff;
+}
+
+.header-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px 0 10px;
-  background-color: #fff;
   border-bottom: 1px solid #ccc;
-  position: sticky;
+  padding: 0 1rem 0 1rem;
 }
 
-.bag-view-footer {
+.header-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  border-bottom: 1px solid #ccc;
+  padding: 0 1rem 0 1rem;
+}
+
+.header-body-left {
+  display: flex;
+}
+
+.header-body-right {
+  display: flex;
+  padding-right: 20px;
+  margin-right: 10px;
+}
+
+.assignments {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.assignments p {
+  padding-left: 10px;
+}
+
+.employee {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.employee p {
+  padding-left: 10px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.weight {
+  padding-left: 20px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.weight p {
+  padding-left: 10px;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,10 +88,10 @@
   border-top: 1px solid #ccc;
 }
 
-.bag-view-stop {
+.stop {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0 10px 0;
+  padding: 0;
   background-color: #fff;
 }
