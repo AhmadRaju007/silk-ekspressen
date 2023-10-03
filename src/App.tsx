@@ -11,7 +11,7 @@ export const App = () => {
   return (
     <Modal
       orderName={data.order_details.order_tracking_id}
-      onButtonSuccess={() => navigate(`/bags/${data.order_id}`)}
+      onButtonSuccess={() => navigate(`/bags/${data.order_id}/0`)}
     />
   );
 };

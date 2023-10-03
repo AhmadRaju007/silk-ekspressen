@@ -1,21 +1,33 @@
 //get bag id from route params
 
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { OrderData } from "../../types/orderData";
 import StopIcon from "@mui/icons-material/Stop";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import "./bagView.css";
+import React from "react";
 
 export const BagView = () => {
   //get bag id from route params
+  const navigate = useNavigate();
 
-  const { orderID } = useParams();
+  const { orderID, bagID } = useParams();
   const { data }: OrderData = require("../../packing.json");
   console.log(data);
 
-  const bags = data.order_details.bag_list;
+  if (!bagID) {
+    navigate(-1);
+  }
+
+  const bag = data.order_details.bag_list[+(bagID ?? 0)];
+
+  if (!bag) {
+    navigate(-1);
+  }
 
   return (
     <div className="container">
@@ -50,6 +62,63 @@ export const BagView = () => {
           <div className="header-body-right">
             <p>Packing: {data.employee}</p>
           </div>
+        </div>
+      </div>
+
+      <div className="container-body">
+        <div className="allies">
+          <div className="left-alley-header">
+            <p>Left Alley</p>
+            <ArrowBackRoundedIcon
+              style={{
+                backgroundColor: "#c7efc0",
+              }}
+            />
+          </div>
+          <div className="right-alley-header">
+            <p>Right Alley</p>{" "}
+            <ArrowForwardRoundedIcon
+              style={{
+                backgroundColor: "#ffbc39",
+              }}
+            />
+          </div>
+        </div>
+        <div className="missing">
+          <p>Missing Candies</p>
+        </div>
+      </div>
+
+      <div className="item-container">
+        <div className="items-body">
+          {bag.candies.map((candy, index) => (
+            <React.Fragment key={index}>
+              <div
+                className={
+                  candy.alley_side === "left" ? "item-left" : "item-right"
+                }
+              >
+                <p>
+                  {candy.total_amount} x {candy.short_code}
+                </p>
+                <img src={candy.image} alt="" height={100} width={100} />
+              </div>
+              {index % 2 === 1 && (
+                <div className="straight-lines">
+                  <div
+                    className="item-left"
+                    style={{ borderBottom: "#161515 3px" }}
+                  >
+                    addas
+                  </div>
+                  <div className="item-right">
+                    <hr />
+                    {index}
+                  </div>
+                </div>
+              )}
+            </React.Fragment>
+          ))}
         </div>
       </div>
 

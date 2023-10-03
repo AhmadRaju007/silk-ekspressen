@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/bags/:orderID",
+    path: "/bags/:orderID/:bagID",
     element: <BagView />,
   },
 ]);
