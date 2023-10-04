@@ -11,6 +11,7 @@ import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import "./bagView.css";
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
+import { Button } from "@mui/material";
 
 export const BagView = () => {
   //get bag id from route params
@@ -131,9 +132,63 @@ export const BagView = () => {
         </div>
       </div>
 
-      <div className="bag-footer"></div>
+      <div className="bag-footer">
+        <div className="bag-footer-left">
+          <p>Weight 0g of 385g</p>
+        </div>
+        <div className="bag-footer-center">
+          <p>Bag 1 of 1</p>
+        </div>
+        <div className="bag-footer-right">
+          <Button
+            variant="contained"
+            style={{
+              backgroundColor: "#c7efc0",
+              color: "#000000",
+              marginRight: "10px",
+            }}
+            size="large"
+            className="previous-bag"
+          >
+            Previous Bag
+          </Button>
+          <Button
+            variant="contained"
+            color="inherit"
+            size="large"
+            style={{
+              marginLeft: "10px",
+            }}
+          >
+            Next Bag
+          </Button>
+        </div>
+      </div>
 
-      <div className="footer">Footer</div>
+      <div className="footer">
+        <Button
+          variant="contained"
+          style={{
+            backgroundColor: "#c7efc0",
+            color: "#000000",
+            marginRight: "10px",
+          }}
+          size="large"
+          className="previous-bag"
+        >
+          Select All
+        </Button>
+        <Button
+          variant="contained"
+          color="inherit"
+          size="large"
+          style={{
+            marginLeft: "10px",
+          }}
+        >
+          Unselect All
+        </Button>
+      </div>
     </div>
   );
 };
