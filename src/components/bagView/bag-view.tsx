@@ -8,7 +8,7 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import "./bagView.css";
+import "./bag-view.css";
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";

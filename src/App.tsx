@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Modal } from "./components/modal/modal";
+import { Modal } from "./components/homeModal/home-modal";
 import { OrderData } from "./types/orderData";
 // import { data } from "../packing.json";
 

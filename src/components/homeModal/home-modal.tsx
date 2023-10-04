@@ -1,4 +1,4 @@
-import "./modal.css";
+import "./home-modal.css";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import { Button } from "@mui/material";
 
