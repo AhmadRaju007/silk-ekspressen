@@ -10,6 +10,7 @@ import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import "./bagView.css";
 import React from "react";
+import Checkbox from "@mui/material/Checkbox";
 
 export const BagView = () => {
   //get bag id from route params
@@ -101,26 +102,36 @@ export const BagView = () => {
                 <p>
                   {candy.total_amount} x {candy.short_code}
                 </p>
+                <Checkbox
+                  sx={{
+                    color: "#69cf57",
+                    "&.Mui-checked": {
+                      color: "#69cf57",
+                    },
+                  }}
+                />
                 <img src={candy.image} alt="" height={100} width={100} />
               </div>
               {index % 2 === 1 && (
                 <div className="straight-lines">
-                  <div
-                    className="item-left"
-                    style={{ borderBottom: "#161515 3px" }}
-                  >
-                    addas
-                  </div>
-                  <div className="item-right">
-                    <hr />
-                    {index}
-                  </div>
+                  <hr className="hr-left" />
+
+                  <hr className="hr-right" />
                 </div>
               )}
             </React.Fragment>
           ))}
+          {bag.candies.length % 2 === 1 && (
+            <div className="straight-lines">
+              <hr className="hr-left" />
+
+              <hr className="hr-right" />
+            </div>
+          )}
         </div>
       </div>
+
+      <div className="bag-footer"></div>
 
       <div className="footer">Footer</div>
     </div>
