@@ -1,5 +1,3 @@
-//get bag id from route params
-
 import { useNavigate, useParams } from "react-router-dom";
 import { OrderData } from "../../types/orderData";
 import StopIcon from "@mui/icons-material/Stop";
@@ -8,20 +6,21 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import "./bag-view.css";
+import styles from "./bag-view.module.css";
 import React from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
+import { BagViewModal } from "./components/bag-view-modal";
 
 export const BagView = () => {
-  //get bag id from route params
   const navigate = useNavigate();
 
   const { orderID, bagID } = useParams();
   const { data }: OrderData = require("../../packing.json");
-  console.log(orderID);
 
-  if (!bagID) {
+  const bagIndex = bagID ? +bagID + 1 : 1;
+
+  if (!bagIndex) {
     navigate(-1);
   }
 
@@ -32,43 +31,43 @@ export const BagView = () => {
   }
 
   return (
-    <div>
-      <div className="container">
-        <div className="header">
-          <div className="header-title">
-            <div className="order">
+    <div style={{ overflow: "hidden" }}>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles.header_title}>
+            <div className={styles.order}>
               <h2>DEV-{data.order_id}</h2>
             </div>
-            <div className="stop">
+            <div className={styles.stop}>
               <StopIcon />
               <h2>Stop packing order</h2>
             </div>
           </div>
-          <div className="header-body">
-            <div className="header-body-left">
-              <div className="assignments">
+          <div className={styles.header_body}>
+            <div className={styles.header_body_left}>
+              <div className={styles.assignments}>
                 <AssignmentIcon />
                 <p>DEV-{data.order_id}</p>
               </div>
 
-              <div className="employee">
+              <div className={styles.employee}>
                 <ShoppingBagOutlinedIcon />
                 <p>{`${data.employee} | Bag 1 of 1`}</p>
               </div>
 
-              <div className="weight">
+              <div className={styles.weight}>
                 <ScaleOutlinedIcon />
                 <p>{`Weight 0g of 385g`}</p>
               </div>
             </div>
 
-            <div className="header-body-right">
+            <div className={styles.header_body_right}>
               <p>Packing: {data.employee}</p>
             </div>
           </div>
         </div>
 
-        <div className="container-body">
+        <div className={styles.container_body}>
           <div className="allies">
             <div className="left-alley-header">
               <p>Left Alley</p>
@@ -87,18 +86,20 @@ export const BagView = () => {
               />
             </div>
           </div>
-          <div className="missing">
+          <div className={styles.missing}>
             <p>Missing Candies</p>
           </div>
         </div>
 
-        <div className="all-items">
-          <div className="item-container">
+        <div className={styles.all_items}>
+          <div className={styles.item_container}>
             {bag.candies.map((candy, index) => (
               <React.Fragment key={index}>
                 <div
                   className={
-                    candy.alley_side === "left" ? "item-left" : "item-right"
+                    candy.alley_side === "left"
+                      ? styles.item_left
+                      : styles.item_right
                   }
                 >
                   <p>
@@ -115,38 +116,38 @@ export const BagView = () => {
                   <img src={candy.image} alt="" height={100} width={100} />
                 </div>
                 {index % 2 === 1 && (
-                  <div className="straight-lines">
-                    <hr className="hr-left" />
+                  <div className={styles.straight_lines}>
+                    <hr className={styles.hr_left} />
 
-                    <hr className="hr-right" />
+                    <hr className={styles.hr_right} />
                   </div>
                 )}
               </React.Fragment>
             ))}
             {bag.candies.length % 2 === 1 && (
-              <div className="straight-lines">
-                <hr className="hr-left" />
+              <div className={styles.straight_lines}>
+                <hr className={styles.hr_left} />
 
-                <hr className="hr-right" />
+                <hr className={styles.hr_right} />
               </div>
             )}
           </div>
 
-          <div className="missing-container">
+          <div className={styles.missing_container}>
             No Missing candies in this bag
           </div>
         </div>
 
-        <div className="bag-footer-1">
-          <div className="bag-footer-1-left">
+        <div className={styles.bag_footer_1}>
+          <div className={styles.bag_footer_1_left}>
             <h3>Weight 0g of 385g</h3>
           </div>
-          <div className="bag-footer-1-center">
+          <div className={styles.bag_footer_1_center}>
             <h3>
-              Bag {+(bagID ?? 0) + 1} of {data.order_details.bag_list.length}
+              Bag {bagIndex} of {data.order_details.bag_list.length}
             </h3>
           </div>
-          <div className="bag-footer-1-right">
+          <div className={styles.bag_footer_1_right}>
             <Button
               variant="contained"
               color="primary"
@@ -167,15 +168,15 @@ export const BagView = () => {
                 marginLeft: "10px",
                 fontWeight: "bold",
               }}
-              disabled={+(bagID ?? 0) + 1 >= data.order_details.bag_list.length}
+              disabled={bagIndex >= data.order_details.bag_list.length}
             >
               Next Bag
             </Button>
           </div>
         </div>
 
-        <div className="bag-footer-2">
-          <div className="total-weight">
+        <div className={styles.bag_footer_2}>
+          <div className={styles.total_weight}>
             <h2>Total Weight 0g of {data.order_details.total_weight}g</h2>
           </div>
 
@@ -192,7 +193,7 @@ export const BagView = () => {
           </Button>
         </div>
       </div>
-      <div className="footer">
+      <div className={styles.footer}>
         <Button
           variant="contained"
           color="primary"
@@ -203,7 +204,6 @@ export const BagView = () => {
             fontWeight: "bold",
           }}
           size="large"
-          className="previous-bag"
         >
           Select All
         </Button>
@@ -221,6 +221,11 @@ export const BagView = () => {
           Unselect All
         </Button>
       </div>
+      <BagViewModal
+        bag={bag}
+        bagIndex={bagIndex}
+        totalBags={data.order_details.bag_list.length}
+      />
     </div>
   );
 };

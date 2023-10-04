@@ -10,7 +10,7 @@
   color: #000000b6;
 }
 
-.modal-content {
+.modal_content {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -23,14 +23,14 @@
 }
 
 /* align modal content h2 to left of div */
-.modal-content h2 {
+.modal_content h2 {
   text-align: left;
   margin: 5px 10px 5px 10px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
-.modal-header {
+.modal_header {
   display: flex;
   justify-content: left;
   align-items: center;
@@ -41,14 +41,14 @@
   padding: 0;
 }
 
-.modal-footer {
+.modal_footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin: 30px 0 10px 0;
 }
 
-.modal-footer button {
+.modal_footer button {
   margin: 0 10px 0 10px;
   font-weight: 600;
   width: 30%;

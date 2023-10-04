@@ -1,4 +1,4 @@
-import "./home-modal.css";
+import styles from "./home-modal.module.css";
 import ReportProblemRoundedIcon from "@mui/icons-material/ReportProblemRounded";
 import { Button } from "@mui/material";
 
@@ -7,18 +7,18 @@ export const Modal = (props: {
   onButtonSuccess: () => any;
 }) => {
   return (
-    <div className="modal">
-      <div className="modal-content">
-        <div className="modal-header">
+    <div className={styles.modal}>
+      <div className={styles.modal_content}>
+        <div className={styles.modal_header}>
           <ReportProblemRoundedIcon color="warning" />
           <h2>Attention</h2>
         </div>
 
-        <div className="modal-body">
+        <div className={styles.modal_body}>
           <p>Are you ready to pack Order {`DEV-${props.orderName}`}?</p>
         </div>
 
-        <div className="modal-footer">
+        <div className={styles.modal_footer}>
           <Button
             variant="contained"
             style={{

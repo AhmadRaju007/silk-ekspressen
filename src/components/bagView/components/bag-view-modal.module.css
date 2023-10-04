@@ -1,0 +1,87 @@
+/* bag-view-modal.module.css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 202;
+}
+
+.modal_content {
+  background-color: #fff;
+  border-radius: 2px;
+  /* padding: 20px; */
+  width: 80%;
+  max-width: 520px;
+}
+
+/* add bottom shadow in header */
+.modal_header {
+  text-align: center;
+  border-bottom: #ebe6ec 1px solid;
+}
+
+/* add bottom shadow for h2*/
+.modal_header h3 {
+  margin: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #77318b;
+}
+
+.bag_name {
+  text-align: center;
+}
+
+.bag_name h3 {
+  color: #ffbc39;
+}
+
+.modal_body {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.bag_description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+  flex: 1;
+}
+
+.bag_image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+  flex: 1;
+}
+
+.bag_description + .bag_image {
+  border-left: #0c0c0c 1px solid;
+}
+
+.modal_footer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  padding-top: 20px;
+}
+
+/* Style for the "Yes" button */
+.modal_footer Button:first-child {
+  background-color: #c7efc0;
+}
+
+/* Style for the "NO" button */
+.modal_footer Button:last-child {
+  background-color: #f7c0c0;
+}
