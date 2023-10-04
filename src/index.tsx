@@ -14,6 +14,15 @@ const theme = createTheme({
       textTransform: "none",
     },
   },
+  palette: {
+    action: {
+      disabledBackground: "#e0e0e0",
+      disabled: "#676060",
+    },
+    primary: {
+      main: "#c7efc0",
+    },
+  },
 });
 
 export default theme;

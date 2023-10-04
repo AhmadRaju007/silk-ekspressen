@@ -3,6 +3,7 @@
 .container {
   justify-content: space-between;
   height: 100%;
+  margin-bottom: 6rem;
 }
 
 /* header should be fixed on top when scrolling y */
@@ -130,26 +131,27 @@
   border-bottom: #ccc 1px solid;
 }
 
-.item-container {
-  width: 90%;
-  margin: 0 auto; /* Center the container in the middle of the page */
+.all-items {
+  width: 100%;
   display: flex;
+  justify-content: space-between;
+  margin-right: 10%;
+}
+
+.item-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
-}
-
-.items-body {
-  width: 70%;
-  /* display: flex; */
-  /* justify-content: space-between; */
-  margin-right: 10%;
+  position: relative;
 }
 
 .item-right,
 .item-left {
   display: flex;
-  justify-content: flex-end; /* Right justify the content */
+  /* justify-content: flex-end;  */
   align-items: center;
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
@@ -157,16 +159,20 @@
 
 .item-right {
   width: 100%;
-  padding-right: 0; /* Shift the item 50% to the right within item-body */
+  justify-content: flex-end;
+  padding-right: 3%;
 }
 
 .item-left {
-  width: 45%;
+  width: 50%; /* Set it to 50% */
+  position: relative; /* Position it absolutely within the item-container */
 }
 
 .hr-left {
-  width: 100%;
+  width: 80%;
+  margin-left: 7.5%;
   margin-right: 5%;
+  padding: auto;
   background-color: rgb(255, 188, 57);
   color: rgb(255, 188, 57);
   height: 2px;
@@ -174,8 +180,11 @@
 }
 
 .hr-right {
-  width: 100%;
+  width: 80%;
   margin-left: 5%;
+  margin-right: 3%;
+  padding: auto;
+
   background-color: rgb(255, 188, 57);
   color: rgb(255, 188, 57);
   height: 2px;
@@ -184,30 +193,54 @@
 
 .straight-lines {
   width: 100%;
-  margin: 0 auto; /* Center the container in the middle of the page */
+  /* margin: 0 auto;  */
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.bag-footer {
-  width: 95%;
+.missing-container {
+  width: 30%;
+  text-align: center;
+  padding-top: 10px;
+  color: rgb(255, 188, 57);
+  font-weight: 700;
+}
+
+.bag-footer-1 {
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 3rem;
   height: 3rem;
-  margin-right: 30%;
+  background-color: #fff;
+  border-bottom: 1px solid #e4dada;
+}
+
+.bag-footer-2 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem;
+  height: 3rem;
   background-color: #fff;
 }
 
 .footer {
+  position: fixed; /* Set the position to fixed */
+  bottom: 0;
+  left: 0; /* Align the left edge with the left edge of the viewport */
+  right: 0; /* Align the right edge with the right edge of the viewport */
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem;
+  padding: 2.5rem 1rem;
   height: 3rem;
   background-color: #9c6faa;
+  width: 100%;
+  z-index: 101;
 }
 
 .stop {
