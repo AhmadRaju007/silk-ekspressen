@@ -7,7 +7,7 @@ import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import styles from "./bag-view.module.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
 import { BagViewModal } from "./components/bag-view-modal";
@@ -20,7 +20,8 @@ export const BagView = () => {
 
   //take a useSTate to cover modal open and close
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(true);
+  const [total_bag_weight, setTotalBagWeight] = useState<number>(0);
 
   const bagIndex = bagID ? +bagID + 1 : 1;
 
@@ -64,6 +65,17 @@ export const BagView = () => {
     return checkedState.every((isChecked) => !isChecked);
   };
 
+  useEffect(() => {
+    // Calculate the total bag weight whenever checkedState changes
+    let newTotalBagWeight = 0;
+    bag.candies?.forEach((candy, index) => {
+      if (checkedState[index]) {
+        newTotalBagWeight += candy.total_weight;
+      }
+    });
+    setTotalBagWeight(newTotalBagWeight);
+  }, [checkedState, bag.candies]);
+
   return (
     <div>
       <div className={styles.container}>
@@ -91,7 +103,9 @@ export const BagView = () => {
 
               <div className={styles.weight}>
                 <ScaleOutlinedIcon />
-                <p>{`Weight 0g of 385g`}</p>
+                <p>
+                  Weight {total_bag_weight}g of {bag.total_bag_weight}g
+                </p>
               </div>
             </div>
 
@@ -149,7 +163,13 @@ export const BagView = () => {
                     checked={checkedState[index]}
                     onChange={() => handleCheckboxChange(index)}
                   />
-                  <img src={candy.image} alt="" height={100} width={100} />
+                  <img
+                    src={candy.image}
+                    alt=""
+                    height={100}
+                    width={100}
+                    onClick={() => handleCheckboxChange(index)}
+                  />
                 </div>
                 {index % 2 === 1 && (
                   <div className={styles.straight_lines}>
@@ -176,7 +196,9 @@ export const BagView = () => {
 
         <div className={styles.bag_footer_1}>
           <div className={styles.bag_footer_1_left}>
-            <h3>Weight 0g of 385g</h3>
+            <h3>
+              Weight {total_bag_weight}g of {bag.total_bag_weight}g
+            </h3>
           </div>
           <div className={styles.bag_footer_1_center}>
             <h3>
@@ -213,7 +235,10 @@ export const BagView = () => {
 
         <div className={styles.bag_footer_2}>
           <div className={styles.total_weight}>
-            <h2>Total Weight 0g of {data.order_details.total_weight}g</h2>
+            <h2>
+              Total Weight {total_bag_weight}g of{" "}
+              {data.order_details.total_weight}g
+            </h2>
           </div>
 
           <Button

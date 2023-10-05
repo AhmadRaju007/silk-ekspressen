@@ -9,6 +9,7 @@ export const BagViewModal = (props: {
   totalBags: number;
   handelModalClose: () => void;
 }) => {
+  const { bag, bagIndex, totalBags, handelModalClose } = props;
   const navigate = useNavigate();
   return (
     <div className={styles.modal}>
@@ -23,10 +24,10 @@ export const BagViewModal = (props: {
 
         <div className={styles.modal_body}>
           <div className={styles.bag_description}>
-            <p>Weight: {props.bag.total_bag_weight} g</p>
-            <p>Bag Name: {props.bag.name}</p>
+            <p>Weight: {bag.total_bag_weight} g</p>
+            <p>Bag Name: {bag.name}</p>
             <p>
-              Bag No: {props.bagIndex} of {props.totalBags}
+              Bag No: {bagIndex} of {totalBags}
             </p>
           </div>
           <div className={styles.bag_right}>
@@ -45,7 +46,7 @@ export const BagViewModal = (props: {
                   backgroundColor: "#c7efc0",
                 }}
                 size="large"
-                onClick={props.handelModalClose}
+                onClick={handelModalClose}
               >
                 Yes
               </Button>
