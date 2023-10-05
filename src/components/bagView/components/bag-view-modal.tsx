@@ -26,28 +26,31 @@ export const BagViewModal = (props: {
               Bag No: {props.bagIndex} of {props.totalBags}
             </p>
           </div>
-          <div className={styles.bag_image}>
-            <img
-              src="https://github.com/AhmadRaju007/silk-ekspressen/blob/master/public/W7A5101_fritlagt%201.png"
-              alt=""
-            />
+          <div className={styles.bag_right}>
+            <div className={styles.bag_image}>
+              <img
+                src="/W7A5101_fritlagt.png"
+                alt=""
+                height={200}
+                width={120}
+              />
+            </div>
+            <div className={styles.bag_right_buttons}>
+              <Button
+                variant="contained"
+                style={{
+                  backgroundColor: "#c7efc0",
+                }}
+                size="large"
+                //   onClick={props.onButtonSuccess}
+              >
+                Yes
+              </Button>
+              <Button variant="contained" color="inherit" size="large">
+                NO
+              </Button>
+            </div>
           </div>
-        </div>
-
-        <div className={styles.modal_footer}>
-          <Button
-            variant="contained"
-            style={{
-              backgroundColor: "#c7efc0",
-            }}
-            size="large"
-            //   onClick={props.onButtonSuccess}
-          >
-            Yes
-          </Button>
-          <Button variant="contained" color="inherit" size="large">
-            NO
-          </Button>
         </div>
       </div>
     </div>

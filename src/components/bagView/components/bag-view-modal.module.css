@@ -17,8 +17,7 @@
   background-color: #fff;
   border-radius: 2px;
   /* padding: 20px; */
-  width: 80%;
-  max-width: 520px;
+  width: 40%;
 }
 
 /* add bottom shadow in header */
@@ -44,29 +43,42 @@
 }
 
 .modal_body {
-  display: flex;
-  align-items: stretch;
+  display: grid;
+  grid-template-columns: auto auto;
   width: 100%;
 }
 
 .bag_description {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   margin: 20px;
-  flex: 1;
+  border-right: #2f2e2f 1px solid;
+}
+
+.bag_right {
+  display: grid;
+  grid-template-rows: auto;
 }
 
 .bag_image {
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  height: 100%;
+}
+
+.bag_right_buttons {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px;
-  flex: 1;
 }
 
-.bag_description + .bag_image {
-  border-left: #0c0c0c 1px solid;
+.bag_right_buttons Button:first-child {
+  margin-right: 10px;
+  width: 80%;
+}
+.bag_right_buttons Button:last-child {
+  margin-left: 10px;
+  width: 80%;
 }
 
 .modal_footer {
