@@ -15,7 +15,7 @@ import { BagViewModal } from "./components/bag-view-modal";
 export const BagView = () => {
   const navigate = useNavigate();
 
-  const { orderID, bagID } = useParams();
+  const { bagID } = useParams();
   const { data }: OrderData = require("../../packing.json");
 
   //take a useSTate to cover modal open and close
@@ -25,18 +25,44 @@ export const BagView = () => {
   const bagIndex = bagID ? +bagID + 1 : 1;
 
   if (!bagIndex) {
-    console.log("bagIndex", bagIndex);
     navigate("/", { replace: true });
   }
 
   const bag = data.order_details?.bag_list[+(bagID ?? 0)];
 
   if (!bag || bag === undefined || !bag.candies) {
-    console.log("bag", bagIndex);
     navigate("/", { replace: true });
   }
 
-  console.log(bag);
+  const [checkedState, setCheckedState] = useState(
+    Array(bag.candies.length).fill(false)
+  );
+
+  // Function to handle checkbox change
+  const handleCheckboxChange = (index: number) => {
+    const newCheckedState = [...checkedState];
+    newCheckedState[index] = !newCheckedState[index];
+    setCheckedState(newCheckedState);
+  };
+
+  // Function to check if all checkboxes are checked
+  const areAllCheckboxesChecked = () => {
+    return checkedState.every((isChecked) => isChecked);
+  };
+
+  // Function to check all checkboxes
+  const checkAllCheckboxes = () => {
+    setCheckedState(Array(bag.candies.length).fill(true));
+  };
+
+  // Function to uncheck all checkboxes
+  const uncheckAllCheckboxes = () => {
+    setCheckedState(Array(bag.candies.length).fill(false));
+  };
+
+  const areAllCheckboxesUnchecked = () => {
+    return checkedState.every((isChecked) => !isChecked);
+  };
 
   return (
     <div>
@@ -120,6 +146,8 @@ export const BagView = () => {
                         color: "#69cf57",
                       },
                     }}
+                    checked={checkedState[index]}
+                    onChange={() => handleCheckboxChange(index)}
                   />
                   <img src={candy.image} alt="" height={100} width={100} />
                 </div>
@@ -195,7 +223,7 @@ export const BagView = () => {
             style={{
               fontWeight: "bold",
             }}
-            disabled={bagID === "0"}
+            disabled={!areAllCheckboxesChecked()}
           >
             Complete Order
           </Button>
@@ -212,6 +240,8 @@ export const BagView = () => {
             fontWeight: "bold",
           }}
           size="large"
+          onClick={checkAllCheckboxes}
+          disabled={areAllCheckboxesChecked()}
         >
           Select All
         </Button>
@@ -225,6 +255,8 @@ export const BagView = () => {
             paddingRight: "50px",
             fontWeight: "bold",
           }}
+          onClick={uncheckAllCheckboxes}
+          disabled={areAllCheckboxesUnchecked()}
         >
           Unselect All
         </Button>
