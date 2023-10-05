@@ -89,6 +89,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 10%;
 }
 
 .allies {
@@ -249,4 +250,28 @@
   align-items: center;
   padding: 0;
   background-color: #fff;
+}
+
+@media (max-width: 1200px) {
+  .container_body {
+    margin-top: 15%; /* Adjust margin-top for smaller screens */
+  }
+}
+
+@media (max-width: 1000px) {
+  .container_body {
+    margin-top: 20%; /* Adjust margin-top for smaller screens */
+  }
+}
+
+@media (max-width: 780px) {
+  .container_body {
+    margin-top: 25%; /* Adjust margin-top for smaller screens */
+  }
+}
+
+@media (max-width: 500px) {
+  .container_body {
+    margin-top: 55%; /* Adjust margin-top for smaller screens */
+  }
 }

@@ -7,7 +7,7 @@ import ScaleOutlinedIcon from "@mui/icons-material/ScaleOutlined";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import styles from "./bag-view.module.css";
-import React from "react";
+import React, { useState } from "react";
 import Checkbox from "@mui/material/Checkbox";
 import { Button } from "@mui/material";
 import { BagViewModal } from "./components/bag-view-modal";
@@ -17,6 +17,10 @@ export const BagView = () => {
 
   const { orderID, bagID } = useParams();
   const { data }: OrderData = require("../../packing.json");
+
+  //take a useSTate to cover modal open and close
+
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   const bagIndex = bagID ? +bagID + 1 : 1;
 
@@ -31,7 +35,7 @@ export const BagView = () => {
   }
 
   return (
-    <div style={{ overflow: "hidden" }}>
+    <div>
       <div className={styles.container}>
         <div className={styles.header}>
           <div className={styles.header_title}>
@@ -68,8 +72,8 @@ export const BagView = () => {
         </div>
 
         <div className={styles.container_body}>
-          <div className="allies">
-            <div className="left-alley-header">
+          <div className={styles.allies}>
+            <div className={styles.left_alley_header}>
               <p>Left Alley</p>
               <ArrowBackRoundedIcon
                 style={{
@@ -77,7 +81,7 @@ export const BagView = () => {
                 }}
               />
             </div>
-            <div className="right-alley-header">
+            <div className={styles.right_alley_header}>
               <p>Right Alley</p>{" "}
               <ArrowForwardRoundedIcon
                 style={{
@@ -221,11 +225,14 @@ export const BagView = () => {
           Unselect All
         </Button>
       </div>
-      <BagViewModal
-        bag={bag}
-        bagIndex={bagIndex}
-        totalBags={data.order_details.bag_list.length}
-      />
+      {isModalOpen && (
+        <BagViewModal
+          bag={bag}
+          bagIndex={bagIndex}
+          totalBags={data.order_details.bag_list.length}
+          handelModalClose={() => setIsModalOpen(false)}
+        />
+      )}
     </div>
   );
 };

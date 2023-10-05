@@ -6,6 +6,7 @@ export const BagViewModal = (props: {
   bag: BagList;
   bagIndex: number;
   totalBags: number;
+  handelModalClose: () => void;
 }) => {
   return (
     <div className={styles.modal}>
@@ -42,7 +43,7 @@ export const BagViewModal = (props: {
                   backgroundColor: "#c7efc0",
                 }}
                 size="large"
-                //   onClick={props.onButtonSuccess}
+                onClick={props.handelModalClose}
               >
                 Yes
               </Button>
