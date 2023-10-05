@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import styles from "./bag-view-modal.module.css";
 import { BagList } from "../../../types/orderData";
+import { useNavigate } from "react-router-dom";
 
 export const BagViewModal = (props: {
   bag: BagList;
@@ -8,6 +9,7 @@ export const BagViewModal = (props: {
   totalBags: number;
   handelModalClose: () => void;
 }) => {
+  const navigate = useNavigate();
   return (
     <div className={styles.modal}>
       <div className={styles.modal_content}>
@@ -47,7 +49,12 @@ export const BagViewModal = (props: {
               >
                 Yes
               </Button>
-              <Button variant="contained" color="inherit" size="large">
+              <Button
+                variant="contained"
+                color="inherit"
+                size="large"
+                onClick={() => navigate("/")}
+              >
                 NO
               </Button>
             </div>

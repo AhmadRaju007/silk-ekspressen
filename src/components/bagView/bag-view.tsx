@@ -25,14 +25,18 @@ export const BagView = () => {
   const bagIndex = bagID ? +bagID + 1 : 1;
 
   if (!bagIndex) {
-    navigate(-1);
+    console.log("bagIndex", bagIndex);
+    navigate("/", { replace: true });
   }
 
-  const bag = data.order_details.bag_list[+(bagID ?? 0)];
+  const bag = data.order_details?.bag_list[+(bagID ?? 0)];
 
-  if (!bag) {
-    navigate(-1);
+  if (!bag || bag === undefined || !bag.candies) {
+    console.log("bag", bagIndex);
+    navigate("/", { replace: true });
   }
+
+  console.log(bag);
 
   return (
     <div>
@@ -97,7 +101,7 @@ export const BagView = () => {
 
         <div className={styles.all_items}>
           <div className={styles.item_container}>
-            {bag.candies.map((candy, index) => (
+            {bag.candies?.map((candy, index) => (
               <React.Fragment key={index}>
                 <div
                   className={
